@@ -1,46 +1,46 @@
-# Astro Starter Kit: Basics
+# 🚀 Astro Lazy Plugin Showcase
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+This is a high-performance demonstration site built to showcase the capabilities of [**vite-plugin-astro-prerender**](https://github.com/ishaanparlikar/vite-plugin-astro-prerender).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## ⚡ Overview
 
-## 🚀 Project Structure
+This site demonstrates how to use on-demand prerendering to aggressively reduce initial page load times without sacrificing rich content. 
 
-Inside of your Astro project, you'll see the following folders and files:
+### 🎯 Key Plugin Features Displayed:
+- **On-Demand Prerendering**: Components like the high-res gallery and footer are prerendered to static HTML fragments.
+- **Tailwind Tree-Shaking**: Optimized, dedicated CSS is generated only for lazy-loaded components.
+- **Performance Tracking**: Integrated real-time dashboard monitoring payload reduction and asset weights.
+- **Interactive Triggers**: Manual and viewport-based component injection.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## 📊 Performance Metrics
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- **Initial Payload Reduction**: ~94%
+- **Deferred Assets**: ~5.5MB (High-res Unsplash Gallery)
+- **Time to Interaction**: Near-instant for the core landing experience.
 
-## 🧞 Commands
+## 📂 Project Structure
 
-All commands are run from the root of the project, from a terminal:
+- `src/components/Lazy/`: Components being prerendered by the plugin.
+- `src/components/PerformanceDashboard.astro`: The real-time metric visualization tool.
+- `src/pages/performance.astro`: The main interactive demo page.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## 🛠 Running Locally
 
-## 👀 Want to learn more?
+1. **Install Dependencies**:
+   ```sh
+   pnpm install
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+2. **Start Dev Server**:
+   ```sh
+   pnpm dev
+   ```
+
+3. **Build & Preview**:
+   ```sh
+   pnpm build
+   ```
+
+---
+
+Built with ❤️ by [Ishan Parlikar](https://github.com/ishaanparlikar) using [Astro](https://astro.build).
