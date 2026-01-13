@@ -1,0 +1,389 @@
+---
+/**
+ * Lazy-loaded Footer Component
+ *
+ * This component is inlined to ensure compatibility with the Parser renderer,
+ * which does not support component imports.
+ */
+---
+
+<div class="lazy-footer-wrapper">
+    <footer class="site-footer">
+        <div class="section-container">
+            <!-- Newsletter Section (Matching index.astro component style) -->
+            <div class="footer-cta">
+                <div class="section-header">
+                    <span class="section-label">Stay Connected</span>
+                    <h2 class="section-title">
+                        Join our performance-first community
+                    </h2>
+                    <p class="section-subtitle">
+                        Get the latest updates, performance tips, and alpha
+                        releases.
+                    </p>
+                </div>
+
+                <form class="newsletter-form">
+                    <input
+                        type="email"
+                        placeholder="you@example.com"
+                        required
+                    />
+                    <button type="submit" class="btn btn-primary"
+                        >Subscribe</button
+                    >
+                </form>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <span class="logo-text">astro-prerender</span>
+                    </div>
+                    <p class="footer-description">
+                        The ultra-fast lazy loading solution for the Astro
+                        ecosystem. Built for performance, developer experience,
+                        and scalability.
+                    </p>
+                    <div class="social-links">
+                        <a
+                            href="https://github.com/ishaanparlikar/vite-plugin-astro-prerender"
+                            target="_blank"
+                            class="social-btn"
+                            aria-label="GitHub"
+                        >
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                ><path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                ></path></svg
+                            >
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <div class="nav-col">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#installation">Installation</a>
+                        <a href="#demo">Live Demo</a>
+                        <a href="#">Security</a>
+                    </div>
+                    <div class="nav-col">
+                        <h4>Resources</h4>
+                        <a href="https://docs.astro.build">Astro Docs</a>
+                        <a href="#">API Reference</a>
+                        <a href="#">Examples</a>
+                        <a href="#">Changelog</a>
+                    </div>
+                    <div class="nav-col">
+                        <h4>Company</h4>
+                        <a href="https://github.com/ishaanparlikar">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">
+                    &copy; 2026 Ishan Parlikar. Built with Astro & Excellence.
+                </p>
+                <div class="bottom-links">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lazy badge matching index.astro badge styles -->
+    <div class="lazy-status-indicator">
+        <div class="indicator-glow"></div>
+        <span class="indicator-icon">⚡</span>
+        <span>Hydrated via On-Demand Prerender</span>
+    </div>
+</div>
+
+<style>
+    .site-footer {
+        background: #0a0a14;
+        padding: 5rem 0 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        color: #fff;
+    }
+
+    .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    /* Newsletter CTA */
+    .footer-cta {
+        margin-bottom: 6rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 2rem;
+        padding: 4rem 2rem;
+    }
+
+    .section-header {
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+    }
+
+    .section-label {
+        display: inline-block;
+        background: linear-gradient(
+            135deg,
+            rgba(102, 126, 234, 0.2) 0%,
+            rgba(118, 75, 162, 0.2) 100%
+        );
+        border: 1px solid rgba(102, 126, 234, 0.3);
+        color: #8b9cff;
+        padding: 0.5rem 1.25rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+    }
+
+    .section-title {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        color: #888;
+        font-size: 1.1rem;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        background: #0f0f1a;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        color: #fff;
+        outline: none;
+    }
+
+    .newsletter-form input:focus {
+        border-color: #667eea;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 0.75rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Footer Grid */
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 4rem;
+        padding-bottom: 4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 900px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+    }
+
+    .footer-description {
+        color: #888;
+        line-height: 1.7;
+        margin: 1.5rem 0;
+        max-width: 320px;
+    }
+
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 0.75rem;
+        color: #888;
+        transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+        background: rgba(102, 126, 234, 0.15);
+        color: #8b9cff;
+        border-color: rgba(102, 126, 234, 0.3);
+    }
+
+    .footer-nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .nav-col h4 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+    }
+
+    .nav-col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .nav-col a {
+        color: #666;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.2s;
+    }
+
+    .nav-col a:hover {
+        color: #8b9cff;
+    }
+
+    /* Bottom Bar */
+    .footer-bottom {
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .copyright {
+        color: #444;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+
+    .bottom-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .bottom-links a {
+        color: #444;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.2s;
+    }
+
+    .bottom-links a:hover {
+        color: #888;
+    }
+
+    @media (max-width: 600px) {
+        .newsletter-form {
+            flex-direction: column;
+        }
+        .footer-nav {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .lazy-footer-wrapper {
+        position: relative;
+    }
+
+    .lazy-status-indicator {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(102, 126, 234, 0.15);
+        border: 1px solid rgba(102, 126, 234, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        color: #8b9cff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .indicator-icon {
+        font-size: 1rem;
+    }
+
+    .indicator-glow {
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        border-radius: 2rem;
+        animation: shine 3s infinite;
+        pointer-events: none;
+    }
+
+    @keyframes shine {
+        0% {
+            transform: translateX(-150%);
+        }
+        100% {
+            transform: translateX(150%);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .lazy-status-indicator {
+            top: auto;
+            bottom: 1rem;
+            right: 1rem;
+        }
+    }
+</style>

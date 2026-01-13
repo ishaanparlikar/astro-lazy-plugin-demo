@@ -1,0 +1,25 @@
+{
+  "name": "astro-lazy-plugin-demo",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Performance showcase and demo for vite-plugin-astro-prerender",
+  "author": "Ishan Parlikar",
+  "license": "MIT",
+  "homepage": "https://ishaanparlikar.github.io/vite-plugin-astro-prerender",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "astro build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.16.9",
+    "typescript": "^5.9.3",
+    "vite-plugin-astro-prerender": "file:../astro-lazy-plugin"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

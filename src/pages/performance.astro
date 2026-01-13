@@ -1,0 +1,419 @@
+---
+// src/pages/performance.astro
+import PerformanceDashboard from "../components/PerformanceDashboard.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Performance Showcase | Astro Prerender Plugin</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #05050a;
+                --text: #ffffff;
+                --primary: #6366f1;
+                --secondary: #a855f7;
+                --surface: rgba(255, 255, 255, 0.03);
+                --border: rgba(255, 255, 255, 0.1);
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: var(--bg);
+                color: var(--text);
+                font-family: "Inter", sans-serif;
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .hero {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 0 2rem;
+                position: relative;
+                background:
+                    radial-gradient(
+                        circle at 20% 30%,
+                        rgba(99, 102, 241, 0.15) 0%,
+                        transparent 40%
+                    ),
+                    radial-gradient(
+                        circle at 80% 70%,
+                        rgba(168, 85, 247, 0.15) 0%,
+                        transparent 40%
+                    );
+            }
+
+            .hero-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                background: rgba(99, 102, 241, 0.1);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 2rem;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: #818cf8;
+                margin-bottom: 2rem;
+            }
+
+            .hero h1 {
+                font-family: "Outfit", sans-serif;
+                font-size: clamp(3rem, 8vw, 6rem);
+                font-weight: 800;
+                margin: 0;
+                background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                letter-spacing: -0.02em;
+            }
+
+            .hero p {
+                font-size: clamp(1.1rem, 2vw, 1.4rem);
+                color: #94a3b8;
+                max-width: 600px;
+                margin: 1.5rem 0 3rem;
+            }
+
+            .scroll-indicator {
+                position: absolute;
+                bottom: 2rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                color: #64748b;
+                font-size: 0.8rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+
+            .mouse {
+                width: 24px;
+                height: 40px;
+                border: 2px solid #334155;
+                border-radius: 12px;
+                position: relative;
+            }
+
+            .mouse::before {
+                content: "";
+                position: absolute;
+                top: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 4px;
+                height: 8px;
+                background: #6366f1;
+                border-radius: 2px;
+                animation: scroll 2s infinite;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(-50%, 15px);
+                    opacity: 0;
+                }
+            }
+
+            .content-section {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 8rem 2rem;
+            }
+
+            .demo-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 2rem;
+                padding: 4rem;
+                margin-bottom: 4rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .demo-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    135deg,
+                    rgba(99, 102, 241, 0.05) 0%,
+                    transparent 50%
+                );
+                pointer-events: none;
+            }
+
+            .demo-header {
+                margin-bottom: 3rem;
+            }
+
+            .demo-label {
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: var(--primary);
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            .demo-title {
+                font-size: clamp(2rem, 4vw, 3rem);
+                font-weight: 700;
+                margin: 0 0 1rem;
+            }
+
+            .demo-content {
+                min-height: 400px;
+                background: rgba(0, 0, 0, 0.3);
+                border: 1px dashed rgba(255, 255, 255, 0.1);
+                border-radius: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
+                color: #475569;
+            }
+
+            .loader-placeholder {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border: 3px solid rgba(99, 102, 241, 0.1);
+                border-top-color: var(--primary);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .footer-showcase {
+                background: #000;
+                padding-top: 4rem;
+            }
+
+            .metric-info {
+                padding: 1rem 1.5rem;
+                background: rgba(16, 185, 129, 0.1);
+                border: 1px solid rgba(16, 185, 129, 0.2);
+                border-radius: 1rem;
+                color: #34d399;
+                font-size: 0.9rem;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 2rem;
+            }
+
+            .btn-load-showcase {
+                background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+                color: #fff;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 1rem;
+                font-size: 1rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+                box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            }
+
+            .btn-load-showcase:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+            }
+
+            .heavy-badge-alt {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: rgba(239, 68, 68, 0.1);
+                border: 1px solid rgba(239, 68, 68, 0.2);
+                color: #f87171;
+                padding: 0.6rem 1.25rem;
+                border-radius: 2rem;
+                font-size: 0.9rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+            }
+
+            footer {
+                min-height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="hero">
+            <div class="hero-badge">⚡ Performance Metrics Enabled</div>
+            <h1>Lazy Loading<br />Visualized.</h1>
+            <p>
+                Scroll down to see the plugin in action. Watch the real-time
+                metrics dashboard in the corner as components are fetched and
+                rendered.
+            </p>
+
+            <div class="scroll-indicator">
+                <span>Scroll to Trigger</span>
+                <div class="mouse"></div>
+            </div>
+        </div>
+
+        <main class="content-section">
+            <div class="demo-card">
+                <div class="demo-header">
+                    <span class="demo-label">Demo 01: Testimonials Section</span
+                    >
+                    <h2 class="demo-title">Rich Content, Lazy Loaded.</h2>
+                    <p>
+                        This component contains complex SVGs and multiple cards.
+                        It's only fetched from the server when it enters your
+                        viewport.
+                    </p>
+
+                    <div class="metric-info">
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                        </svg>
+                        <span
+                            >Check the dashboard for fetch timing & minified
+                            size.</span
+                        >
+                    </div>
+                </div>
+
+                <div id="testimonials-container" class="demo-content">
+                    <div class="loader-placeholder">
+                        <div class="spinner"></div>
+                        <span>Waiting for viewport...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-card">
+                <div class="demo-header">
+                    <span class="demo-label">Demo 02: High-Res Gallery</span>
+                    <h2 class="demo-title">Heavy Assets, Managed.</h2>
+                    <p>
+                        Image galleries are notorious for bloating initial page
+                        weight. By deferring this component, we save over 5MB of
+                        initial transfer.
+                    </p>
+                </div>
+
+                <div id="gallery-container" class="demo-content">
+                    <div class="loader-placeholder">
+                        <div class="heavy-badge-alt">
+                            <span class="badge-icon">🪨</span>
+                            <span>Deferred ~5.5MB of Visual Assets</span>
+                        </div>
+                        <button id="trigger-gallery" class="btn-load-showcase">
+                            Load Visual Showcase
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-card">
+                <div class="demo-header">
+                    <span class="demo-label">Demo 03: Site Footer</span>
+                    <h2 class="demo-title">The "Below the Fold" Classic.</h2>
+                    <p>
+                        Footers are perfect candidates for lazy loading. Why
+                        load it on every page hit if the user never scrolls
+                        down?
+                    </p>
+                </div>
+
+                <div id="footer-container" class="demo-content">
+                    <div class="loader-placeholder">
+                        <div class="spinner"></div>
+                        <span>Waiting for viewport...</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="footer-showcase">
+            <div id="real-footer-container"></div>
+        </div>
+
+        <PerformanceDashboard />
+
+        <script>
+            import { lazyLoader } from "vite-plugin-astro-prerender/client";
+
+            // Configure the loader for this page
+            // We'll add some artificial delay in the dashboard to make it more visible
+
+            // Start observing components
+            lazyLoader.observeAndLoad(
+                "LazyTestimonials",
+                "#testimonials-container",
+                {
+                    rootMargin: "0px", // Trigger exactly when entering
+                    threshold: 0.1,
+                },
+            );
+
+            // Manual trigger for gallery
+            const galleryTrigger = document.getElementById("trigger-gallery");
+            galleryTrigger?.addEventListener("click", () => {
+                lazyLoader.inject("LazyGallery", "#gallery-container");
+                // The dashboard updates via interval, but we can force it
+                // if we find the update function in the window scope
+                // (Dashboard component usually handles its own updates)
+            });
+
+            lazyLoader.observeAndLoad("LazyFooter", "#real-footer-container", {
+                rootMargin: "400px", // Load earlier for better UX
+            });
+
+            // Add a secondary trigger for the footer container in the demo card if needed
+            // but we already have two demos.
+        </script>
+    </body>
+</html>
