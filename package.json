@@ -17,7 +17,7 @@
     "@astrojs/check": "^0.9.6",
     "astro": "^5.16.9",
     "typescript": "^5.9.3",
-    "vite-plugin-astro-prerender": "file:../astro-lazy-plugin"
+    "vite-plugin-astro-prerender": "^0.1.22"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
