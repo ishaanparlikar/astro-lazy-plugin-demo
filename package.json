@@ -5,7 +5,7 @@
   "description": "Performance showcase and demo for vite-plugin-astro-prerender",
   "author": "Ishan Parlikar",
   "license": "MIT",
-  "homepage": "https://ishaanparlikar.github.io/vite-plugin-astro-prerender",
+  "homepage": "https://ishaanparlikar.github.io/astro-prerender-plugin",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
