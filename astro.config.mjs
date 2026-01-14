@@ -4,8 +4,8 @@ import { astroPrerenderIntegration } from 'vite-plugin-astro-prerender';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://ishaanparlikar.github.io',
-    base: '/astro-prerender-plugin',
+    site: 'https://ishaanparlikar.github.io/',
+    base: '/astro-prerender-plugin/',
     integrations: [
         astroPrerenderIntegration({
             componentsDir: 'src/components/Lazy',
