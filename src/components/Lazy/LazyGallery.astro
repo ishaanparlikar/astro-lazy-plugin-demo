@@ -4,40 +4,10 @@
  *
  * This component contains high-resolution images to demonstrate the
  * payload deferral benefits of the vite-plugin-astro-prerender plugin.
+ *
+ * Note: Content is static HTML because the ParserRenderer fallback
+ * doesn't evaluate JavaScript expressions.
  */
-
-const images = [
-    {
-        url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
-        title: "Deep Space Exploration",
-        description: "Capturing the essence of the unknown infinity.",
-    },
-    {
-        url: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&q=80&w=1200",
-        title: "Galaxy",
-        description: "The Galaxy",
-    },
-    {
-        url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
-        title: "Future Retro Tech",
-        description: "Nostalgic hardware meets modern aesthetics.",
-    },
-    {
-        url: "https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=1200",
-        title: "Stellar Cloud",
-        description: "Interstellar dust forming the nursery of new stars.",
-    },
-    {
-        url: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=1200",
-        title: "Satellite View",
-        description: "Our fragile oasis viewed from the edge of space.",
-    },
-    {
-        url: "https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&q=80&w=1200",
-        title: "Nebula Dreams",
-        description: "Vibrant colors of ionizing gases in deep space.",
-    },
-];
 ---
 
 <section class="gallery-section">
@@ -55,19 +25,80 @@ const images = [
         </div>
 
         <div class="gallery-grid">
-            {
-                images.map((img) => (
-                    <div class="gallery-item">
-                        <div class="image-wrapper">
-                            <img src={img.url} alt={img.title} />
-                            <div class="image-overlay">
-                                <h3>{img.title}</h3>
-                                <p>{img.description}</p>
-                            </div>
-                        </div>
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"
+                        alt="Deep Space Exploration"
+                    />
+                    <div class="image-overlay">
+                        <h3>Deep Space Exploration</h3>
+                        <p>Capturing the essence of the unknown infinity.</p>
                     </div>
-                ))
-            }
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&q=80&w=1200"
+                        alt="Galaxy"
+                    />
+                    <div class="image-overlay">
+                        <h3>Galaxy</h3>
+                        <p>The Galaxy</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200"
+                        alt="Future Retro Tech"
+                    />
+                    <div class="image-overlay">
+                        <h3>Future Retro Tech</h3>
+                        <p>Nostalgic hardware meets modern aesthetics.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=1200"
+                        alt="Stellar Cloud"
+                    />
+                    <div class="image-overlay">
+                        <h3>Stellar Cloud</h3>
+                        <p>
+                            Interstellar dust forming the nursery of new stars.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=1200"
+                        alt="Satellite View"
+                    />
+                    <div class="image-overlay">
+                        <h3>Satellite View</h3>
+                        <p>Our fragile oasis viewed from the edge of space.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <img
+                        src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&q=80&w=1200"
+                        alt="Nebula Dreams"
+                    />
+                    <div class="image-overlay">
+                        <h3>Nebula Dreams</h3>
+                        <p>Vibrant colors of ionizing gases in deep space.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
