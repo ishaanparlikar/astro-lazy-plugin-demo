@@ -12,6 +12,12 @@ import PerformanceDashboard from "../components/PerformanceDashboard.astro";
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
+            rel="shortcut icon"
+            type="image/svg"
+            href="/astro-prerender-plugin/favicon.svg"
+        />
+
+        <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;700&display=swap"
             rel="stylesheet"
         />
@@ -384,13 +390,20 @@ import PerformanceDashboard from "../components/PerformanceDashboard.astro";
         <PerformanceDashboard />
 
         <script>
-            import { lazyLoader } from "vite-plugin-astro-prerender/client";
+            import { createLazyLoader } from "vite-plugin-astro-prerender/client";
+            import { prerenderedPath } from "virtual:astro-prerender-config";
 
-            // Configure the loader for this page
-            // We'll add some artificial delay in the dashboard to make it more visible
+            // Create loader with correct base URL from config
+            const loader = createLazyLoader({
+                baseUrl: prerenderedPath,
+                debug: true,
+            });
+
+            // Expose loader globally for the dashboard to access
+            (window as any).__lazyLoader = loader;
 
             // Start observing components
-            lazyLoader.observeAndLoad(
+            loader.observeAndLoad(
                 "LazyTestimonials",
                 "#testimonials-container",
                 {
@@ -402,18 +415,12 @@ import PerformanceDashboard from "../components/PerformanceDashboard.astro";
             // Manual trigger for gallery
             const galleryTrigger = document.getElementById("trigger-gallery");
             galleryTrigger?.addEventListener("click", () => {
-                lazyLoader.inject("LazyGallery", "#gallery-container");
-                // The dashboard updates via interval, but we can force it
-                // if we find the update function in the window scope
-                // (Dashboard component usually handles its own updates)
+                loader.inject("LazyGallery", "#gallery-container");
             });
 
-            lazyLoader.observeAndLoad("LazyFooter", "#real-footer-container", {
+            loader.observeAndLoad("LazyFooter", "#real-footer-container", {
                 rootMargin: "400px", // Load earlier for better UX
             });
-
-            // Add a secondary trigger for the footer container in the demo card if needed
-            // but we already have two demos.
         </script>
     </body>
 </html>

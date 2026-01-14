@@ -420,7 +420,9 @@
 </style>
 
 <script>
-    import { lazyLoader } from "vite-plugin-astro-prerender/client";
+    // Use the global loader exposed by the page, or fall back to importing one
+    const getLoader = () => (window as any).__lazyLoader;
+
     const dashboard = document.getElementById("performance-dashboard");
     const closeBtn = document.getElementById("close-perf-dashboard");
     const resetBtn = document.getElementById("reset-perf-stats");
@@ -444,8 +446,11 @@
     }
 
     function updateDashboard() {
-        const stats = lazyLoader.getStats();
-        const history = lazyLoader.getDetailedHistory() as any[];
+        const loader = getLoader();
+        if (!loader) return; // Wait for loader to be available
+
+        const stats = loader.getStats();
+        const history = loader.getDetailedHistory() as any[];
 
         if (stats.totalLoads > 0 && dashboard) {
             dashboard.classList.remove("hidden");
@@ -542,8 +547,11 @@
     });
 
     resetBtn?.addEventListener("click", () => {
-        lazyLoader.reset();
-        updateDashboard();
+        const loader = getLoader();
+        if (loader) {
+            loader.reset();
+            updateDashboard();
+        }
     });
 
     // Initial trigger

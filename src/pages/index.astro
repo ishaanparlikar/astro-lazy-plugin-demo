@@ -68,6 +68,13 @@ export default defineConfig({
 						<span class="btn-icon">⭐</span>
 						GitHub (Alpha)
 					</a>
+					<a
+						href="/astro-prerender-plugin/performance"
+						class="btn btn-secondary"
+					>
+						<span class="btn-icon">📊</span>
+						Performance Demo
+					</a>
 				</div>
 
 				<div class="hero-stats">
@@ -217,9 +224,10 @@ export default defineConfig({
 					<p>Use the loader to fetch and inject content:</p>
 					<pre
 						is:raw><code class="language-typescript">import { createLazyLoader } from "vite-plugin-astro-prerender/client";
+import { prerenderedPath } from "virtual:astro-prerender-config";
 
 const loader = createLazyLoader({
-  baseUrl: "/prerendered",
+  baseUrl: prerenderedPath, // Auto-uses base from astro.config.mjs
 });
 
 // Load when element enters viewport
@@ -265,9 +273,10 @@ loader.observeAndLoad(
 
 <script>
 	import { createLazyLoader } from "vite-plugin-astro-prerender/client";
+	import { prerenderedPath } from "virtual:astro-prerender-config";
 
 	const loader = createLazyLoader({
-		baseUrl: "/prerendered",
+		baseUrl: prerenderedPath,
 		debug: true,
 		onLoad: (name: string, { duration }: { duration: number }) => {
 			console.log(`✅ Loaded "${name}" in ${duration.toFixed(2)}ms`);

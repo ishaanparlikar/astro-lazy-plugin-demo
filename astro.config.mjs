@@ -11,7 +11,7 @@ export default defineConfig({
             componentsDir: 'src/components/Lazy',
             outputDir: 'public/prerendered',
             generateTailwindCSS: false,
-            renderer: "container"
+            renderer: "container",
         }),
     ],
 });
