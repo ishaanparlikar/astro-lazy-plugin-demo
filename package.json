@@ -1,7 +1,7 @@
 {
   "name": "astro-lazy-plugin-demo",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Performance showcase and demo for vite-plugin-astro-prerender",
   "author": "Ishan Parlikar",
   "license": "MIT",
