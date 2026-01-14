@@ -13,9 +13,9 @@ const images = [
         description: "Capturing the essence of the unknown infinity.",
     },
     {
-        url: "https://images.unsplash.com/photo-1614728263952-84ea256f9479?auto=format&fit=crop&q=80&w=1200",
-        title: "Neon Cityscape",
-        description: "The vibrant life of a futuristic metropolis at night.",
+        url: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&q=80&w=1200",
+        title: "Galaxy",
+        description: "The Galaxy",
     },
     {
         url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
@@ -54,21 +54,19 @@ const images = [
             </p>
         </div>
 
-        <div class="gallery-grid lazy-content">
+        <div class="gallery-grid">
             {
-                images.map((img) => {
-                    return (
-                        <div class="gallery-item">
-                            <div class="image-wrapper">
-                                <img src={img.url} alt={img.title} />
-                                <div class="image-overlay">
-                                    <h3>{img.title}</h3>
-                                    <p>{img.description}</p>
-                                </div>
+                images.map((img) => (
+                    <div class="gallery-item">
+                        <div class="image-wrapper">
+                            <img src={img.url} alt={img.title} />
+                            <div class="image-overlay">
+                                <h3>{img.title}</h3>
+                                <p>{img.description}</p>
                             </div>
                         </div>
-                    );
-                })
+                    </div>
+                ))
             }
         </div>
     </div>
